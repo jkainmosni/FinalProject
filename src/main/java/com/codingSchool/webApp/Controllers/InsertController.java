@@ -54,6 +54,7 @@ public class InsertController {
                          RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
+            System.err.println(bindingResult);
             return "insert";
         }
 
@@ -67,7 +68,7 @@ public class InsertController {
             logger.error("User registration failed: " + exception);
             return "/insert";
         }
-        redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
+        redirectAttributes.addFlashAttribute("message", "You have sucessfully completed User registration");
 
         return "/insert";
     }
@@ -88,21 +89,22 @@ public class InsertController {
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
+            System.err.println(bindingResult);
             return "insertRepair";
         }
 
         try {
             Repair repair = RepairConverter.buildRepairObject(insertRepairForm);
             repairService.insert(repair);
-            redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
-            return "/insertRepair";
+            redirectAttributes.addFlashAttribute("message", "You have sucessfully completed Repair registration");
+
         } catch (Exception exception) {
             redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
             logger.error("Repair registration failed: " + exception);
 
             return "/insertRepair";
         }
-        //return "/insertRepair";
+        return "/insertRepair";
     }
 
     //=============== V E C H I C L E
@@ -121,17 +123,22 @@ public class InsertController {
                                 RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
+            System.err.println(bindingResult);
             return "insertVehicle";
         }
+
         try {
             Vehicle vehicle = VehicleConverter.buildVehicleObject(insertVehicleForm);
             vehicleService.insert(vehicle);
+            redirectAttributes.addFlashAttribute("message", "You have sucessfully completed Vehicle registration");
+
         } catch (Exception exception) {
             redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
             logger.error("Vehicle registration failed: " + exception);
+
             return "/insertVehicle";
         }
-        redirectAttributes.addFlashAttribute("message", "You have sucessfully completed registration");
+
         return "/insertVehicle";
     }
 }

@@ -10,7 +10,7 @@ public class InsertVehicleForm {
 
     private static final String MODEL_PATTERN = "^[a-zA-Z0-9]*$";
     private static final String NAME_PATTERN = "^[a-zA-z]*$";
-    private static final String YEAR_PATTERN = "^[1-9]{4}$";
+    private static final String YEAR_PATTERN = "^[0-9]{4}$";
     private static final String PLATE_PATTERN = "^[A-Z]{3}\\-[1-9][0-9]{3}$";
 
     @Size(min=2)

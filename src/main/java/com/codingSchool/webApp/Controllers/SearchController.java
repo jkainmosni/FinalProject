@@ -77,6 +77,8 @@ public class SearchController {
 
         if (bindingResult.hasErrors()) {
             logger.error(String.format("%s Validation Errors present: ", bindingResult.getErrorCount()));
+            System.err.println(bindingResult);
+
             return "redirect:search";
         }
         try {
@@ -84,13 +86,17 @@ public class SearchController {
             System.err.println("UPDATE: User with UserId:" + user.getUserid());
             userService.update(user);
             session.setAttribute("username", searchForm.getUserid());
+            logger.info("User update completed for user: " + user.getUserid());
+
             return "redirect:search";
         } catch (Exception exception) {
                 redirectAttributes.addFlashAttribute("errorMessage", exception.getMessage());
-                logger.error("User registration failed: " + exception);
+                logger.error("User update failed: " + exception);
+
             return "redirect:search";
         }
     }
+
     @RequestMapping(value="/admin/owner/delete", method = RequestMethod.POST)
     public String delete(@ModelAttribute(SEARCH_FORM) SearchForm searchForm,
                          BindingResult bindingResult, HttpSession session,
@@ -98,6 +104,7 @@ public class SearchController {
 
         System.err.println("DELETE: User with UserId:" + searchForm.getUserid());
         userService.delete(searchForm.getUserid());
+        logger.info("User Delete completed for user: " + searchForm.getUserid());
 
         return "redirect:search";
     }
@@ -121,11 +128,13 @@ public class SearchController {
             if (searchRepairForm.getDatetime2() == null) {
                 List<Repair> repairs2 = repairService.findByDatetime(searchRepairForm.getDatetime());
                 redirectAttributes.addFlashAttribute(REPAIR_LIST, repairs2);
+
                 return "redirect:searchRepair";
             }
             List<Repair> repairs2 = repairService.findByDatetimeBetween(searchRepairForm.getDatetime(), searchRepairForm.getDatetime2());
             if (repairs2.isEmpty()) {
                 redirectAttributes.addFlashAttribute("errorMessage", "No user Found");
+
                 return "redirect:searchRepair";
             } else {
                 System.err.println("SEARCH: Repair search via Range of Datetime");
@@ -149,6 +158,7 @@ public class SearchController {
         System.err.println("UPDATE: Repair belongs to user with UserId: " + repair.getServiceid());
         repairService.update(repair);
         session.setAttribute("username", searchRepairForm.getUserid());
+
         return "redirect:searchRepair";
     }
 
@@ -159,6 +169,7 @@ public class SearchController {
 
         System.err.println("DELETE: Repair belongs to user with UserId: " + searchRepairForm.getUserid());
         repairService.delete(searchRepairForm.getServiceid());
+
         return "redirect:searchRepair";
     }
 
@@ -201,11 +212,12 @@ public class SearchController {
     public String updateVehicle(@ModelAttribute(SEARCH_VEHICLE_FORM) SearchVehicleForm searchVehicleForm,
                                BindingResult bindingResult, HttpSession session,
                                RedirectAttributes redirectAttributes) {
-            Vehicle vehicle = VehicleUpdater.updateVehicleObject(searchVehicleForm);
-            System.err.println("UPDATE: Vehicle belongs to user with UserId: " + vehicle.getId());
-            vehicleService.update(vehicle);
+        Vehicle vehicle = VehicleUpdater.updateVehicleObject(searchVehicleForm);
+        System.err.println("UPDATE: Vehicle belongs to user with UserId: " + vehicle.getId());
+        vehicleService.update(vehicle);
+
         return "redirect:searchVehicle";
-    }
+}
 
     @RequestMapping(value="/admin/vehicle/deleteVehicle", method = RequestMethod.POST)
     public String delete(@ModelAttribute(SEARCH_VEHICLE_FORM) SearchVehicleForm searchVehicleForm,
@@ -214,6 +226,7 @@ public class SearchController {
 
         System.err.println("DELETE: Vehicle belongs to user with UserId: " + searchVehicleForm.getUserid());
         vehicleService.delete(searchVehicleForm.getId());
+
         return "redirect:searchVehicle";
     }
 }

@@ -1,8 +1,9 @@
 <#import "/spring.ftl" as spring/>
 <html>
+
 <head>
-<#include "master.ftl"/>
     <title>Insert Owner Page</title>
+    <#include "master.ftl"/>
     <meta charset="UTF-8">
 </head>
 
@@ -10,11 +11,9 @@
 <@navigationbar.navigationbar tab="admin" />
 <div class="container">
     <form data-toggle="validator" role="form" name="registerForm" modelAttribute="insertForm" class="well form-horizontal" action="/admin/owner/insert " method="post" id="register_form">
-        <!-- Form Name -->
         <legend>
             <center><h2><b>Registration Form</b></h2></center>
         </legend><br>
-        <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label">First name</label>
             <div class="col-md-4 inputGroupContainer">
@@ -97,12 +96,11 @@
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                    <input name="address" placeholder="Address" class="form-control" type="text" pattern="[A-Za-z-.]+[ ]+[0-9]{1,4}$" oninvalid="this.setCustomValidity('Required, please enter your address.')" oninput="setCustomValidity('')" required >
+                    <input name="address" placeholder="Address" class="form-control" type="text" pattern="[A-Za-z-.]+[ ]+[0-9]{1,4}$" oninvalid="this.setCustomValidity('Required, please enter your address.')" oninput="setCustomValidity('')" required>
                 </div>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
-        <!-- Button -->
         <div class="form-group">
             <label class="col-md-4 control-label"></label>
             <div class="col-md-4"><br>

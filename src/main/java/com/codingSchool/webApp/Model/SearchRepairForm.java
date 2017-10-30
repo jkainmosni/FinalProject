@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 public class SearchRepairForm {
 
-    private static final String SSN_PATTERN = "^[0-9]*$";
+    private static final String SSN_PATTERN = "^[1-9]{1}[0-9]{8}$";
     private static final int SSN_MINSIZE = 9;
 
     @NotNull(message = "{insert.ssn.null}")

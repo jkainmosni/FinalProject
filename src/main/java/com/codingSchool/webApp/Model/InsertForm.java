@@ -12,7 +12,7 @@ public class InsertForm {
     private static final String PASSWORD_PATTERN = "^[a-zA-Z0-9@#$%^&]*$";
     private static final int PASSWORD_MINSIZE = 6;
     private static final String NAME_PATTERN = "^[a-zA-z]*$";
-    private static final String ADDRESS_PATTERN = "[A-Za-z-.]+[ ]+[0-9]{1,4}$";
+    private static final String ADDRESS_PATTERN = "[A-Za-z-. ]+[ ]+[0-9]{1,4}$";
 
     @NotNull(message = "{insert.email.null}")
     @Pattern(regexp = EMAIL_PATTERN, message = "{insert.email.invalid}")

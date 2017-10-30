@@ -13,7 +13,7 @@ public class SearchForm {
     private static final String PASSWORD_PATTERN = "^[a-zA-Z0-9@#$%^&]*$";
     private static final int PASSWORD_MINSIZE = 6;
     private static final String NAME_PATTERN = "^[a-zA-Z]*$";
-    private static final String ADDRESS_PATTERN = "^[a-zA-Z0-9]*$";
+    private static final String ADDRESS_PATTERN = "^[a-zA-Z0-9 ]*$";
 
     @NotNull(message = "{insert.email.null}")
     @Pattern(regexp = EMAIL_PATTERN, message = "{insert.email.invalid}")

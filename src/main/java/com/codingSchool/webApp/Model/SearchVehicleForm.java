@@ -7,47 +7,48 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class SearchVehicleForm{
-        private static final String SSN_PATTERN = "^[0-9]*$";
-        private static final int SSN_MINSIZE = 9;
-        private static final String MODEL_PATTERN = "^[a-zA-Z0-9]*$";
-        private static final String NAME_PATTERN = "^[a-zA-z]*$";
-        private static final String YEAR_PATTERN = "^[1-9]{4}$";
-        private static final String PLATE_PATTERN = "^[A-Z]{3}\\-[1-9][0-9]{3}$";
+public class SearchVehicleForm {
 
-        @NotNull(message = "{insert.ssn.null}")
-        @Pattern(regexp = SSN_PATTERN, message = "{insert.ssn.invalid}")
-        @Size(min = SSN_MINSIZE, message = "{insert.ssn.size}")
-        private String ssn;
+    private static final String SSN_PATTERN = "^[1-9]{1}[0-9]{8}$";
+    private static final int SSN_MINSIZE = 9;
+    private static final String MODEL_PATTERN = "^[a-zA-Z0-9]*$";
+    private static final String NAME_PATTERN = "^[a-zA-z]*$";
+    private static final String YEAR_PATTERN = "^[1-9]{4}$";
+    private static final String PLATE_PATTERN = "^[A-Z]{3}\\-[1-9][0-9]{3}$";
 
-        @Pattern(regexp = MODEL_PATTERN, message = "{insert.model.invalid}")
-        @NotNull
-        private String model;
+    @NotNull(message = "{insert.ssn.null}")
+    @Pattern(regexp = SSN_PATTERN, message = "{insert.ssn.invalid}")
+    @Size(min = SSN_MINSIZE, message = "{insert.ssn.size}")
+    private String ssn;
 
-        @NotNull
-        @Size(min=2)
-        private String brand;
+    @Pattern(regexp = MODEL_PATTERN, message = "{insert.model.invalid}")
+    @NotNull
+    private String model;
 
-        @NotNull(message = "{insert.year.null}")
-        @Pattern(regexp = YEAR_PATTERN, message = "{insert.year.invalid}")
-        private String year;
+    @NotNull
+    @Size(min=2)
+    private String brand;
 
-        @NotNull
-        @Pattern(regexp = NAME_PATTERN, message = "{insert.name.invalid}")
-        private String color;
+    @NotNull(message = "{insert.year.null}")
+    @Pattern(regexp = YEAR_PATTERN, message = "{insert.year.invalid}")
+    private String year;
 
-        @NotNull(message = "{insert.plate.null}")
-        @Pattern(regexp = PLATE_PATTERN, message = "{insert.plate.invalid}")
-        private String plate;
+    @NotNull
+    @Pattern(regexp = NAME_PATTERN, message = "{insert.name.invalid}")
+    private String color;
 
-        @NotNull(message = "{Object user can not be null}")
-        private User user;
+    @NotNull(message = "{insert.plate.null}")
+    @Pattern(regexp = PLATE_PATTERN, message = "{insert.plate.invalid}")
+    private String plate;
 
-        @NotNull(message = "{insert.userid.null}")
-        @Range(min=1, max=1000,message = "insert.userid.invalid")
-        private long userid;
+    @NotNull(message = "{Object user can not be null}")
+    private User user;
 
-        private long id;
+    @NotNull(message = "{insert.userid.null}")
+    @Range(min=1, max=1000,message = "insert.userid.invalid")
+    private long userid;
+
+    private long id;
 
     public String getSsn() {
         return ssn;
@@ -120,6 +121,4 @@ public class SearchVehicleForm{
     public void setUserid(long userid) {
         this.userid = userid;
     }
-
-
 }

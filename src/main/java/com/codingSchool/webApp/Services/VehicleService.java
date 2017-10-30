@@ -10,12 +10,9 @@ public interface VehicleService {
 
     void insert(Vehicle vehicle);
 
+    void update(Vehicle repair);
 
-     void update(Vehicle repair);
-
-
-     void delete(long id);
+    void delete(long id);
 
     List<Vehicle> findByPlate(String plate);
-
 }

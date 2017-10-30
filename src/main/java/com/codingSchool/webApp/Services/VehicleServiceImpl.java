@@ -35,12 +35,10 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public List<Vehicle> findByPlate(String plate){
-        List<Vehicle> r2=new ArrayList<>();
+        List<Vehicle> vehicles=new ArrayList<>();
         for(Vehicle vehicle:vehicleRepository.findByPlate(plate))
-            r2.add(vehicle);
+            vehicles.add(vehicle);
 
-        return r2;
-
+        return vehicles;
     }
-
 }
